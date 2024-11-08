@@ -17,7 +17,7 @@ class Game {
     monster = loadData.getRandomMonster(); // 몬스터 초기화
   }
 
-  void startGame() {
+  bool? startGame(keepGaming) {
     defeatMonster = defeatedMonsterList.length;
 
     if (character.health <= 0) {
@@ -33,6 +33,7 @@ class Game {
         if (response == 'y') {
           monster = loadData.randomGenerate(
               defeatedMonsterList); //물리친 몬스터를 제외한 새로운 몬스터를 monster 변수에 할당
+          return keepGaming = true;
         } else if (response != null && response == 'n') {
           print('게임을 종료합니다.');
           exit(1);
@@ -43,7 +44,7 @@ class Game {
     } else if (defeatMonster == 0) {
       print('축하합니다! 모든 몬스터를 물리쳤습니다.');
       loadData.saveResult(character.name!, character.health, '승리');
-      keepGaming = false;
+      return keepGaming = false;
     }
   }
 
@@ -58,7 +59,7 @@ class Game {
         if (monster.health <= 0) {
           // 몬스터를 처치했을 경우
           defeatedMonsterList = loadData.removeMonster(monster.name);
-          startGame();
+          startGame(keepGaming);
         } else {
           // 몬스터를 처치하지 못했을 경우 몬스터의 턴
 
