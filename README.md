@@ -17,16 +17,16 @@
 
 1. git repository 클론하기
 
-'''
+```
 git clone https://github.com/SerahKim/RPG_GAME.git
-'''
+```
 
 2. 게임 실행
 
-'''
+```
 cd test
 dart run rpg_game_test.dart
-'''
+```
 
 ### 프로젝트 구조
 
